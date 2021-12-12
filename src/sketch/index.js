@@ -36,6 +36,6 @@ export default function sketch(s) {
   };
 
   s.mousePressed = () => {
-    backgroundColor = s.color(s.random(255), s.random(255), s.random(255));
+    newColor = s.color(s.random(255), s.random(255), s.random(255), 126);
   };
 }
