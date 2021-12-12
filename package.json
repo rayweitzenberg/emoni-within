@@ -4,7 +4,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "npm run clean && webpack -p",
+    "build": "npm run clean && webpack --mode production",
     "clean": "rm -rf dist"
   },
   "dependencies": {
