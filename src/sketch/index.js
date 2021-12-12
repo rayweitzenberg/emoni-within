@@ -8,22 +8,22 @@ export default function sketch(s) {
   let amt = 0;
 
   s.preload = () => {
-    ewithin = s.loadImage("assets/emoni-within.jpg");
-    emask = s.loadImage("assets/emoni-within-mask.png");
+    // ewithin = s.loadImage("assets/emoni-within.jpg");
+    // emask = s.loadImage("assets/emoni-within-mask.png");
+
+    ewithin = s.loadImage("https://live.staticflickr.com/65535/51740197162_7e08a7cc41_b.jpg");
+    emask = s.loadImage("https://live.staticflickr.com/65535/51741661129_c7aae754a3_o.png");
   };
 
   s.setup = () => {
     s.frameRate(60);
     s.createCanvas(s.windowWidth, s.windowHeight);
-    backgroundColor = s.color(s.random(255), s.random(255), s.random(255));
 
     ar = ewithin.height / ewithin.width;
     ewithin.mask(emask);
   };
 
   s.draw = () => {
-    // s.background(255, 255, 255);
-
     amt += 0.01;
     if (amt >= 1) {
       amt = 0.0;
