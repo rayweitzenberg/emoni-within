@@ -11,7 +11,8 @@ export default function sketch(s) {
     // ewithin = s.loadImage("assets/emoni-within.jpg");
     // emask = s.loadImage("assets/emoni-within-mask.png");
 
-    ewithin = s.loadImage("https://live.staticflickr.com/65535/51740197162_7e08a7cc41_b.jpg");
+    // ewithin = s.loadImage("https://live.staticflickr.com/65535/51740197162_7e08a7cc41_b.jpg");
+    ewithin = s.loadImage("https://ipfs.io/ipfs/QmSYBeV5BaZAB4pDdtEuMM6YjGKQsRGMAxZsCVxKquGfDc");
     emask = s.loadImage("https://live.staticflickr.com/65535/51741661129_c7aae754a3_o.png");
   };
 
