@@ -13,8 +13,8 @@ A p5.js sketch wrapped up as an NFT for Emoni to coincide with “GOOD OMEN” c
 
 ## Within on Glitch:
 
-https://purrfect-spiky-sailor.glitch.me/ \
-https://glitch.com/edit/#!/purrfect-spiky-sailor
+https://emoney-within.glitch.me/ \
+https://glitch.com/edit/#!/emoney-within
 
 
 

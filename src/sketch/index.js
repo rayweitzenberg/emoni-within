@@ -1,5 +1,4 @@
 export default function sketch(s) {
-  let backgroundColor;
   let ewithin;
   let emask;
   let ar;
@@ -19,7 +18,11 @@ export default function sketch(s) {
     s.frameRate(60);
     s.createCanvas(s.windowWidth, s.windowHeight);
 
-    ar = ewithin.height / ewithin.width;
+    if (s.windowWidth >= s.windowHeight) {
+      ar = ewithin.height / ewithin.width;
+    } else {
+      ar = ewithin.width / ewithin.height
+    }
     ewithin.mask(emask);
   };
 
@@ -28,14 +31,38 @@ export default function sketch(s) {
     if (amt >= 1) {
       amt = 0.0;
       startColor = newColor;
-      newColor = s.color(s.random(255), s.random(255), s.random(255), 126);
+      newColor = s.color(s.random(255), s.random(255), s.random(255));
     }
 
     s.tint(s.lerpColor(startColor, newColor, amt));
-    s.image(ewithin, 0, 0, s.windowWidth, s.windowWidth * ar);
+
+    if (s.windowWidth >= s.windowHeight) {
+      s.image(ewithin, 0, 0, s.windowHeight / ar, s.windowHeight);
+    } else {
+      s.image(ewithin, 0, 0, s.windowWidth, s.windowWidth / ar);
+    }
   };
 
+  s.windowResized = () => {
+    setTimeout(() => {
+      s.background(255, 255, 255)
+    }, 1)
+    s.resizeCanvas(s.windowWidth, s.windowHeight);
+
+    if (s.windowWidth >= s.windowHeight) {
+      ar = ewithin.height / ewithin.width;
+    } else {
+      ar = ewithin.width / ewithin.height
+    }
+
+    if (s.windowWidth >= s.windowHeight) {
+      s.image(ewithin, 0, 0, s.windowHeight / ar, s.windowHeight);
+    } else {
+      s.image(ewithin, 0, 0, s.windowWidth, s.windowWidth / ar);
+    }
+  }
+
   s.mousePressed = () => {
-    newColor = s.color(s.random(255), s.random(255), s.random(255), 126);
+    newColor = s.color(s.random(255), s.random(255), s.random(255));
   };
 }
