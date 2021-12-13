@@ -18,18 +18,18 @@ export default function sketch(s) {
 
     // img_red = s.loadImage("assets/emoni-img-red.png");
     // mask_red = s.loadImage("assets/emoni-mask-red.png");
-    img_red = s.loadImage("https://live.staticflickr.com/65535/51742896001_18a520e80e_o.png");
-    mask_red = s.loadImage("https://live.staticflickr.com/65535/51743537119_0f5dca6e90_o.png");
+    img_red = s.loadImage("https://live.staticflickr.com/65535/51744895183_4b431fafbf_o.png");
+    mask_red = s.loadImage("https://live.staticflickr.com/65535/51744895103_55b9ecce29_o.png");
 
     // img_blue = s.loadImage("assets/emoni-img-blue.png");
     // mask_blue = s.loadImage("assets/emoni-mask-blue.png");
-    img_blue = s.loadImage("https://live.staticflickr.com/65535/51743133283_429529b04c_o.png");
-    mask_blue = s.loadImage("https://live.staticflickr.com/65535/51742071077_443f36b54e_o.png");
+    img_blue = s.loadImage("https://live.staticflickr.com/65535/51745294799_e3aee4fd8a_o.png");
+    mask_blue = s.loadImage("https://live.staticflickr.com/65535/51744652116_69fd73c291_o.png");
 
     // img_yellow = s.loadImage("assets/emoni-img-yellow.png");
     // mask_yellow = s.loadImage("assets/emoni-mask-yellow.png");
-    img_yellow = s.loadImage("https://live.staticflickr.com/65535/51742895976_fe7caab713_o.png");
-    mask_yellow = s.loadImage("https://live.staticflickr.com/65535/51742895936_9912703fe0_b.jpg");
+    img_yellow = s.loadImage("https://live.staticflickr.com/65535/51744895168_93f572efc4_o.png");
+    mask_yellow = s.loadImage("https://live.staticflickr.com/65535/51744895088_e7b5623f75_o.png");
   };
 
   s.setup = () => {
