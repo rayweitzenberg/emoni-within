@@ -82,11 +82,11 @@ export default function sketch(s) {
       // using hue, saturation and brightness
       //
       s.colorMode(s.HSB);
-      s.tint(colourRed, 100, 100);
+      s.tint(colourRed, 40, 100);
       s.image(img_red, 0, 0, s.windowHeight / ar, s.windowHeight);
-      s.tint(colourYellow, 100, 100);
+      s.tint(colourYellow, 40, 100);
       s.image(img_yellow, 0, 0, s.windowHeight / ar, s.windowHeight);
-      s.tint(colourBlue, 100, 100);
+      s.tint(colourBlue, 40, 100);
       s.image(img_blue, 0, 0, s.windowHeight / ar, s.windowHeight);
     } else {
       s.colorMode(s.RGB);
@@ -94,11 +94,11 @@ export default function sketch(s) {
       s.image(img_arms, 0, 0, s.windowWidth, s.windowWidth / ar);
 
       s.colorMode(s.HSB);
-      s.tint(colourRed, 100, 100);
+      s.tint(colourRed, 40, 100);
       s.image(img_red, 0, 0, s.windowWidth, s.windowWidth / ar);
-      s.tint(colourYellow, 100, 100);
+      s.tint(colourYellow, 40, 100);
       s.image(img_yellow, 0, 0, s.windowWidth, s.windowWidth / ar);
-      s.tint(colourBlue, 100, 100);
+      s.tint(colourBlue, 40, 100);
       s.image(img_blue, 0, 0, s.windowWidth, s.windowWidth / ar);
     }
   };
