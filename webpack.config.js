@@ -13,6 +13,9 @@ module.exports = {
     },
     port: 8080,
     open: true,
+    allowedHosts: [
+      "avalon.local",
+    ],
   },
   stats: "minimal",
   mode: "development",

@@ -1,35 +1,41 @@
 export default function sketch(s) {
+  const canvasScaler = 1.2;
   let img_arms;
+  let img_all;
   let img_red;
   let img_yellow;
   let img_blue;
-  let mask_red;
-  let mask_yellow;
-  let mask_blue;
   let ar;
-  let colourRed = 5;
-  let colourYellow = 60;
-  let colourBlue = 240;
-  const cycleSpeed = 2;
+
+  let diameter = 360;
+  let angle = 0;
+
+  let colourRed;
+  let colourYellow;
+  let colourBlue;
+  let offsetRed = 5;
+  let offsetYellow = 60;
+  let offsetBlue = 240;
+  
+  let slider;
 
   s.preload = () => {
-    // img_arms = s.loadImage("assets/emoni-img-arms.png");
-    img_arms = s.loadImage('https://live.staticflickr.com/65535/51742071212_27bd347738_o.png')
+    img_arms = s.loadImage("assets/emoni-img-arms.png");
+    // img_arms = s.loadImage('https://live.staticflickr.com/65535/51742071212_27bd347738_o.png')
 
-    // img_red = s.loadImage("assets/emoni-img-red.png");
-    // mask_red = s.loadImage("assets/emoni-mask-red.png");
-    img_red = s.loadImage("https://live.staticflickr.com/65535/51744895183_4b431fafbf_o.png");
-    mask_red = s.loadImage("https://live.staticflickr.com/65535/51744895103_55b9ecce29_o.png");
+    // img_red = s.loadImage("assets/emoni-img-red-transp.png");
+    img_red = s.loadImage(
+      "https://live.staticflickr.com/65535/51745064723_57336c1d0f_o.png"
+    );
 
-    // img_blue = s.loadImage("assets/emoni-img-blue.png");
-    // mask_blue = s.loadImage("assets/emoni-mask-blue.png");
-    img_blue = s.loadImage("https://live.staticflickr.com/65535/51745294799_e3aee4fd8a_o.png");
-    mask_blue = s.loadImage("https://live.staticflickr.com/65535/51744652116_69fd73c291_o.png");
+    img_yellow = s.loadImage("assets/emoni-img-yellow-transp.png");
+    // img_yellow = s.loadImage("https://live.staticflickr.com/65535/51745707245_cca103659b_o.png");
 
-    // img_yellow = s.loadImage("assets/emoni-img-yellow.png");
-    // mask_yellow = s.loadImage("assets/emoni-mask-yellow.png");
-    img_yellow = s.loadImage("https://live.staticflickr.com/65535/51744895168_93f572efc4_o.png");
-    mask_yellow = s.loadImage("https://live.staticflickr.com/65535/51744895088_e7b5623f75_o.png");
+    img_blue = s.loadImage("assets/emoni-img-blue-transp.png");
+    // img_blue = s.loadImage("https://live.staticflickr.com/65535/51745464589_6e73823c08_o.png");
+
+    img_all = s.loadImage("assets/emoni-img-all.png");
+    // img_all = s.loadImage('https://live.staticflickr.com/65535/51745472209_04191b2079_o.png')
   };
 
   s.setup = () => {
@@ -37,52 +43,69 @@ export default function sketch(s) {
 
     setTimeout(() => {
       if (s.windowWidth >= s.windowHeight) {
-        s.createCanvas(s.windowHeight / ar, s.windowHeight);
+        s.createCanvas(
+          s.windowHeight / ar / canvasScaler,
+          s.windowHeight / canvasScaler
+        );
       } else {
-        s.createCanvas(s.windowWidth, s.windowWidth / ar);
+        s.createCanvas(
+          s.windowWidth / canvasScaler,
+          s.windowWidth / ar / canvasScaler
+        );
       }
     }, 100);
 
-    img_red.mask(mask_red);
-    img_blue.mask(mask_blue);
-    img_yellow.mask(mask_yellow);
+    slider = s.createSlider(0, 720, 0);
+    slider.position(s.windowWidth / 2 - 100, 15);
+    slider.style("width", "200px");
   };
 
+  // ————————————————————————————————————o Draw -->
+  // Draw -->
+  //
   s.draw = () => {
     s.background(s.color("#0e0e0e"));
     setSizeRatio();
 
-    // Color cyclers
+    // ————————————————————————————————————o Color Cycling -->
+    // Color Cycling -->
+    // https://p5js.org/examples/math-sine.html
     //
-    colourRed += cycleSpeed;
-    if (colourRed > 360) {
-      colourRed = 0;
-    }
-    colourYellow += cycleSpeed;
-    if (colourYellow > 360) {
-      colourYellow = 0;
-    }
-    colourBlue += cycleSpeed;
-    if (colourBlue > 360) {
-      colourBlue = 0;
-    }
+    colourRed = (s.sin(angle + s.PI + offsetRed) * diameter) / 2 + diameter / 2;
+    colourYellow =
+      (s.sin(angle + s.PI + offsetYellow) * diameter) / 2 + diameter / 2;
+    colourBlue = (s.sin(angle + s.PI + 240) * offsetBlue) / 2 + diameter / 2;
+    angle += 0.02;
+    console.log("colourBlue", colourBlue);
   };
 
+  // ————————————————————————————————————o Window Resizing -->
+  // Window Resizing -->
+  //
   s.windowResized = () => {
     setTimeout(() => {
       if (s.windowWidth >= s.windowHeight) {
-        s.resizeCanvas(s.windowHeight / ar, s.windowHeight);
+        s.resizeCanvas(
+          s.windowHeight / canvasScaler / ar,
+          s.windowHeight / canvasScaler
+        );
       } else {
-        s.resizeCanvas(s.windowWidth, s.windowWidth / ar);
+        s.resizeCanvas(
+          s.windowWidth / canvasScaler,
+          s.windowWidth / ar / canvasScaler
+        );
       }
       s.colorMode(s.RGB);
       s.background(255);
     }, 1);
 
+    // Reapply Image Sizes and Aspect Ratio
+    // 
     setSizeRatio();
   };
 
-  // Set size and aspect ratio
+  // ————————————————————————————————————o Size / Aspect Ratio -->
+  // Set Size and Aspect Ratio -->
   //
   let setSizeRatio = () => {
     if (s.windowWidth >= s.windowHeight) {
@@ -91,35 +114,76 @@ export default function sketch(s) {
       ar = img_arms.width / img_arms.height;
     }
 
+    // Wider than Tall -->
+    //
     if (s.windowWidth >= s.windowHeight) {
       s.colorMode(s.RGB);
       s.tint(255);
-      s.image(img_arms, 0, 0, s.windowHeight / ar, s.windowHeight);
+      s.image(
+        img_arms,
+        0,
+        0,
+        s.windowHeight / ar / canvasScaler,
+        s.windowHeight / canvasScaler
+      );
 
-      // Set tints to cycle through the color wheel
-      // using hue, saturation and brightness
+      s.tint(255, 100, 100);
+      // s.image(img_all, 0, 0, s.windowHeight, s.windowHeight / ar);
+
+      tinting(colourRed, img_red);
+      tinting(colourYellow, img_yellow);
+      tinting(colourBlue, img_blue);
+
+      // Taller than Wide -->
       //
-      tintsAndImgs(colourRed, img_red)
-      tintsAndImgs(colourYellow, img_yellow)
-      tintsAndImgs(colourBlue, img_blue)
     } else {
       s.colorMode(s.RGB);
       s.tint(255);
-      s.image(img_arms, 0, 0, s.windowWidth, s.windowWidth / ar);
+      s.image(
+        img_arms,
+        0,
+        0,
+        s.windowWidth / canvasScaler,
+        s.windowWidth / ar / canvasScaler
+      );
 
-      tintsAndImgs(colourRed, img_red, true)
-      tintsAndImgs(colourYellow, img_yellow, true)
-      tintsAndImgs(colourBlue, img_blue, true)
+      s.tint(255, 100, 100);
+      s.image(
+        img_all,
+        0,
+        0,
+        s.windowWidth / canvasScaler,
+        s.windowWidth / ar / canvasScaler
+      );
+
+      tinting(colourRed, img_red, true);
+      tinting(colourYellow, img_yellow, true);
+      tinting(colourBlue, img_blue, true);
     }
   };
 
-  let tintsAndImgs = (tint, img, vert) => {
+  // ————————————————————————————————————o Apply Tints -->
+  // Apply Tints -->
+  //
+  let tinting = (tint, img, vert) => {
     s.colorMode(s.HSB);
-    s.tint(tint, 40, 100);
+    s.tint(tint, 100, 100);
     if (vert) {
-      s.image(img, 0, 0, s.windowWidth, s.windowWidth / ar);
+      s.image(
+        img,
+        0,
+        0,
+        s.windowWidth / canvasScaler,
+        s.windowWidth / ar / canvasScaler
+      );
     } else {
-      s.image(img, 0, 0, s.windowHeight / ar, s.windowHeight);
+      s.image(
+        img,
+        0,
+        0,
+        s.windowHeight / ar / canvasScaler,
+        s.windowHeight / canvasScaler
+      );
     }
-  }
+  };
 }
