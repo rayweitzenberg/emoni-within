@@ -16,7 +16,7 @@ export default function sketch(s) {
   let offsetRed = 5;
   let offsetYellow = 60;
   let offsetBlue = 240;
-  
+
   let slider;
 
   s.preload = () => {
@@ -100,7 +100,7 @@ export default function sketch(s) {
     }, 1);
 
     // Reapply Image Sizes and Aspect Ratio
-    // 
+    //
     setSizeRatio();
   };
 
@@ -128,7 +128,13 @@ export default function sketch(s) {
       );
 
       s.tint(255, 100, 100);
-      // s.image(img_all, 0, 0, s.windowHeight, s.windowHeight / ar);
+      s.image(
+        img_all,
+        0,
+        0,
+        s.windowHeight / canvasScaler,
+        s.windowHeight / ar / canvasScaler
+      );
 
       tinting(colourRed, img_red);
       tinting(colourYellow, img_yellow);
