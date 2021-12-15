@@ -23,10 +23,10 @@ export default function sketch(s) {
     img_arms = s.loadImage("assets/emoni-img-arms.png");
     // img_arms = s.loadImage('https://live.staticflickr.com/65535/51742071212_27bd347738_o.png')
 
-    // img_red = s.loadImage("assets/emoni-img-red-transp.png");
-    img_red = s.loadImage(
-      "https://live.staticflickr.com/65535/51745064723_57336c1d0f_o.png"
-    );
+    img_red = s.loadImage("assets/emoni-img-red-transp.png");
+    // img_red = s.loadImage(
+    //   "https://live.staticflickr.com/65535/51745064723_57336c1d0f_o.png"
+    // );
 
     img_yellow = s.loadImage("assets/emoni-img-yellow-transp.png");
     // img_yellow = s.loadImage("https://live.staticflickr.com/65535/51745707245_cca103659b_o.png");
