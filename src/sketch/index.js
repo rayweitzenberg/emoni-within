@@ -7,15 +7,10 @@ export default function sketch(s) {
   let img_blue;
   let ar;
 
-  let diameter = 360;
-  let angle = 0;
-
-  let colourRed;
-  let colourYellow;
-  let colourBlue;
-  let offsetRed = 5;
-  let offsetYellow = 60;
-  let offsetBlue = 240;
+  let colourRed = 5;
+  let colourYellow = 60;
+  let colourBlue = 240
+  let colourIncrement = 2
 
   let slider;
 
@@ -74,17 +69,7 @@ export default function sketch(s) {
   s.draw = () => {
     s.background(s.color("#0e0e0e"));
     setSizeRatio();
-
-    // ————————————————————————————————————o Color Cycling -->
-    // Color Cycling -->
-    // https://p5js.org/examples/math-sine.html
-    //
-    colourRed = (s.sin(angle + s.PI + offsetRed) * diameter) / 2 + diameter / 2;
-    colourYellow =
-      (s.sin(angle + s.PI + offsetYellow) * diameter) / 2 + diameter / 2;
-    colourBlue = (s.sin(angle + s.PI + 240) * offsetBlue) / 2 + diameter / 2;
-    angle += 0.02;
-    console.log("colourBlue", colourBlue);
+    colorCycling()
   };
 
   // ————————————————————————————————————o Window Resizing -->
@@ -115,7 +100,7 @@ export default function sketch(s) {
   // ————————————————————————————————————o Size / Aspect Ratio -->
   // Set Size and Aspect Ratio -->
   //
-  let setSizeRatio = () => {
+  const setSizeRatio = () => {
     if (s.windowWidth >= s.windowHeight) {
       ar = img_arms.height / img_arms.width;
     } else {
@@ -140,17 +125,17 @@ export default function sketch(s) {
         img_all,
         0,
         0,
+        s.windowHeight / ar / canvasScaler,
         s.windowHeight / canvasScaler,
-        s.windowHeight / ar / canvasScaler
       );
 
       tinting(colourRed, img_red);
       tinting(colourYellow, img_yellow);
       tinting(colourBlue, img_blue);
 
+    } else {
       // Taller than Wide -->
       //
-    } else {
       s.colorMode(s.RGB);
       s.tint(255);
       s.image(
@@ -175,6 +160,27 @@ export default function sketch(s) {
       tinting(colourBlue, img_blue, true);
     }
   };
+
+  // ————————————————————————————————————o Color Cycling -->
+  // Color Cycling -->
+  // 
+  const colorCycling = () => {
+    colourRed = colourRed + colourIncrement
+    if (colourRed >= 360) {
+      colourRed = 0
+    }
+    // console.log('colourRed', colourRed)
+
+    colourYellow = colourYellow + colourIncrement
+    if (colourYellow >= 360) {
+      colourYellow = 0
+    }
+
+    colourBlue = colourBlue + colourIncrement
+    if (colourBlue >= 360) {
+      colourBlue = 0
+    }
+  }
 
   // ————————————————————————————————————o Apply Tints -->
   // Apply Tints -->
