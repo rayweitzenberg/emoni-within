@@ -20,22 +20,30 @@ export default function sketch(s) {
   let slider;
 
   s.preload = () => {
-    img_arms = s.loadImage("assets/emoni-img-arms.png");
-    // img_arms = s.loadImage('https://live.staticflickr.com/65535/51742071212_27bd347738_o.png')
+    // img_red = s.loadImage("assets/emoni-img-red-transp.png");
+    img_red = s.loadImage(
+      "https://live.staticflickr.com/65535/51747711756_76b40b56a4_o.png"
+    );
 
-    img_red = s.loadImage("assets/emoni-img-red-transp.png");
-    // img_red = s.loadImage(
-    //   "https://live.staticflickr.com/65535/51745064723_57336c1d0f_o.png"
-    // );
+    // img_yellow = s.loadImage("assets/emoni-img-yellow-transp.png");
+    img_yellow = s.loadImage(
+      "https://live.staticflickr.com/65535/51747711746_71e64c4a18_o.png"
+    );
 
-    img_yellow = s.loadImage("assets/emoni-img-yellow-transp.png");
-    // img_yellow = s.loadImage("https://live.staticflickr.com/65535/51745707245_cca103659b_o.png");
+    // img_blue = s.loadImage("assets/emoni-img-blue-transp.png");
+    img_blue = s.loadImage(
+      "https://live.staticflickr.com/65535/51747711776_5c0d43461f_o.png"
+    );
 
-    img_blue = s.loadImage("assets/emoni-img-blue-transp.png");
-    // img_blue = s.loadImage("https://live.staticflickr.com/65535/51745464589_6e73823c08_o.png");
+    // img_all = s.loadImage("assets/emoni-img-all.png");
+    img_all = s.loadImage(
+      "https://live.staticflickr.com/65535/51747953783_0a0be03f00_o.png"
+    );
 
-    img_all = s.loadImage("assets/emoni-img-all.png");
-    // img_all = s.loadImage('https://live.staticflickr.com/65535/51745472209_04191b2079_o.png')
+    // img_arms = s.loadImage("assets/emoni-img-arms.png");
+    img_arms = s.loadImage(
+      "https://live.staticflickr.com/65535/51746885712_26914f7af5_o.png"
+    );
   };
 
   s.setup = () => {
